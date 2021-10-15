@@ -1,13 +1,13 @@
-import {combineReducers} from 'redux'
-import authedUser from './authedUser'
-import users from './users'
-import questions from './questions'
-// import { loadingBarReducer } from 'react-redux-loading-bar'
+import { combineReducers } from 'redux';
+import authedUser from './authedUser';
+import users from './users';
+import questions from './questions';
+import { loadingBarReducer } from 'react-redux-loading-bar'
 
 export default combineReducers({
   authedUser,
   users,
   questions,
-  // // add info about the app's current loading state on the store
-  // loadingBar: loadingBarReducer,
-})
+  // add info about the app's current loading state on the store
+  loadingBar: loadingBarReducer,
+});

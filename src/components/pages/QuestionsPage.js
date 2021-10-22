@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
 import QuestionContainer from '../QuestionContainer';
+import ViewPollContainer from '../ViewPollContainer';
 
 class QuestionsPage extends Component {
   state = {
@@ -24,9 +24,7 @@ class QuestionsPage extends Component {
 
     const questionIds =
       isAnsweredTab === true ? questionIdsAnswered : questionIdsUnanswered;
-      console.log('idsssss: ', questionIds)
 
-      // <div class="ui buttons"><button class="ui button">Cancel</button><div class="or"></div><button class="ui positive button">Save</button></div>
     return (
       <div>
         <div class="ui buttons fluid header">
@@ -39,7 +37,10 @@ class QuestionsPage extends Component {
           </button>
         </div>
           {questionIds.map((id) => (
-            <QuestionContainer id={id} />
+            <QuestionContainer
+              id={id} 
+              wouldYouRatherContainer={<ViewPollContainer button={<button className="btn">View Poll</button>}/>}
+            />
           ))}
       </div>
     );

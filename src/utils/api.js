@@ -1,4 +1,4 @@
-import { _getQuestions, _getUsers, _saveQuestion } from './_DATA';
+import { _getQuestions, _getUsers, _saveQuestion, _saveQuestionAnswer } from './_DATA';
 
 export async function getInitialData() {
   const [users, questions] = await Promise.all([_getUsers(), _getQuestions()]);
@@ -10,4 +10,8 @@ export async function getInitialData() {
 
 export function saveQuestion(info) {
   return _saveQuestion(info);
+}
+
+export function saveQuestionAnswer({ authedUser, qid, answer }) {
+  return _saveQuestionAnswer({authedUser, qid, answer});
 }

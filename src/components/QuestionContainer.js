@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Card} from 'semantic-ui-react'
 import { Divider, Grid, Segment } from 'semantic-ui-react'
 import { formatQuestion, formatQuestionDisplay } from '../utils/helpers';
+import QuestionContainerHeader from './QuestionContainerHeader';
 import ViewPollContainer from './ViewPollContainer';
 
 class QuestionContainer  extends Component {
@@ -36,25 +36,29 @@ class QuestionContainer  extends Component {
 
 
   render() {
+    const { question, wouldYouRatherContainer } = this.props;
+    console.log('Questioncontainer props question render: ', question)
+
     const {id, authorName,
     optionOneText,
     optionTwoText,
     optionOneVotes,
         optionTwoVotes,
     avatarUrl,
-    hasAnswered} = this.props.question
+    hasAnswered} = question
+
 
     return (
       <Segment.Group key={id}>
-        <Segment as='h3' color='green'>{authorName} asks</Segment>
+        <QuestionContainerHeader text={`Question by ${authorName}`} />
           <Segment>
             <Grid relaxed='very' divided>
               <Grid.Row>
                 <Grid.Column width={5}>
-                    <img src={avatarUrl} alt={`Avatar of {name}`} className='avatar-large'/>
+                    <img src={avatarUrl} alt={`Avatar of ${authorName}`} className='avatar-large'/>
                 </Grid.Column>
-                <Grid.Column width={10}>
-                  <ViewPollContainer />
+                <Grid.Column textAlign='left' width={10}>
+                  {wouldYouRatherContainer}
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -69,7 +73,6 @@ class QuestionContainer  extends Component {
 function mapStateToProps({authedUser, users, questions}, {id}) {
   authedUser = 'tylermcginnis'
   const question = questions[id]
-  // const parentTweet = tweet ? tweets[tweet.replyingTo] : null
 
   return {
     authedUser,

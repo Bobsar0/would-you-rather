@@ -17,6 +17,28 @@ code {
   padding: 20px;
 }
 
+.result {
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  position: relative;
+}
+
+.voted {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 5px;
+  text-align: center;
+  background: rgb(255, 196, 0);
+  color: white;
+}
+.active {
+  background: rgba(0, 255, 0, 0.1);
+}
+
 a {
   text-decoration: none;
   color: #252525;
@@ -34,6 +56,43 @@ a {
   margin: 10px;
 }
 
+.btn {
+  text-transform: uppercase;
+  color: green;
+  margin: 15px auto;
+  padding: 10px;
+  /* border: 1px solid rgba(0, 0, 0, 0.29); */
+  border: 1px solid green;
+  border-radius: 5px;
+  cursor: pointer;
+  /* background: green; */
+  background: #fff;
+  font-size: 16px;
+  width: 50%;
+  position: relative;
+}
+
+.btn:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  background: green;
+  font-size: 16px;
+  /* text-decoration: none; */
+}
+
+.btn:disabled,
+.btn[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.btn:focus {
+  outline: 0;
+  font-weight: 700;
+  border-width: 2px;
+}
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -46,6 +105,10 @@ a {
 
 .active {
   font-weight: bold;
+}
+
+.hide {
+  display: none;
 }
 
 .nav ul {
@@ -89,42 +152,4 @@ a {
   padding: 10px;
   font-size: 15px;
   height: 20px;
-}
-
-.btn {
-  text-transform: uppercase;
-  color: green;
-  margin: 15px auto;
-  padding: 10px;
-  /* border: 1px solid rgba(0, 0, 0, 0.29); */
-  border: 1px solid green;
-
-  border-radius: 5px;
-  cursor: pointer;
-  /* background: green; */
-  background: #fff;
-  font-size: 16px;
-  width: 50%;
-  position: relative;
-}
-
-.btn:hover {
-  border-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  background: green;
-  font-size: 16px;
-  /* text-decoration: none; */
-}
-
-.btn:disabled,
-.btn[disabled] {
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
-}
-
-.btn:focus {
-  outline: 0;
-  font-weight: 700;
-  border-width: 2px;
 }

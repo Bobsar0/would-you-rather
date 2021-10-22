@@ -28,9 +28,7 @@ function answerQuestion(answer, authedUser, id) {
 export function handleAnswerQuestion(answer, qid) {
   // return the action with the type of GET_QUESTIONS
   return async (dispatch, getState) => {
-      // const { authedUser } = getState()
-      // todo: remove below with above when auth
-  const authedUser = 'tylermcginnis'
+      const { authedUser } = getState()
 
       // use optimistic update where the action is performed on the ui and only reversed when there's an issue saving to the database
       dispatch(answerQuestion(answer, authedUser, qid));

@@ -36,15 +36,11 @@ class UnansweredQuestionPage extends Component {
   }
 }
 
-function mapStateToProps({authedUser, users, questions}, {id}) {
-  authedUser = 'tylermcginnis'
+function mapStateToProps({authedUser, questions}, {id}) {
   const question = questions[id]
 
   return {
     authedUser,
-    // question: question
-    //   ? formatQuestionDisplay(question, users[question.author], authedUser) 
-    //   : null,
     options: question 
       ? [
           {label: question.optionOne.text, value: 'optionOne'},{label: question.optionTwo.text, value: 'optionTwo'}

@@ -45,7 +45,7 @@ a {
 }
 
 .avatar {
-  height: 30px;
+  height: 25px;
   border-radius: 25px;
 }
 .avatar-large {
@@ -58,7 +58,7 @@ a {
 .btn {
   text-transform: uppercase;
   color: green;
-  margin: 15px auto;
+  margin: 10px auto;
   padding: 10px;
   /* border: 1px solid rgba(0, 0, 0, 0.29); */
   border: 1px solid green;
@@ -66,7 +66,7 @@ a {
   cursor: pointer;
   /* background: green; */
   background: #fff;
-  font-size: 16px;
+  font-size: 15px;
   width: 50%;
   position: relative;
 }

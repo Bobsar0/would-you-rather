@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import QuestionContainer from '../QuestionContainer';
 import ViewPollContainer from '../ViewPollContainer';
-import { formatQuestion, formatQuestionDisplay } from '../../utils/helpers';
 import RadioButton from '../RadioButtonContainer';
 import { handleAnswerQuestion } from '../../actions/questions';
 
-class UnansweredQuestionPage extends Component {
+class UnansweredQuestionContainer extends Component {
 
 
   handleSubmitAnswer = (e, answer) => {
@@ -18,35 +16,29 @@ class UnansweredQuestionPage extends Component {
   }
 
   render() {
-    const {id, options} = this.props
+    const {options} = this.props
 
     return (
-      <div>
-        <QuestionContainer 
-          id={id}
-          wouldYouRatherContainer={
-            <ViewPollContainer 
-              content={
-                <RadioButton options={options} handleSubmit={this.handleSubmitAnswer}/>
-              }
-            />}
-        />
-      </div>
+      <ViewPollContainer 
+        content={
+          <RadioButton options={options} handleSubmit={this.handleSubmitAnswer}/>
+        }
+      />
     )
   }
 }
 
-function mapStateToProps({authedUser, questions}, {id}) {
+function mapStateToProps({ questions }, {id}) {
   const question = questions[id]
 
   return {
-    authedUser,
     options: question 
       ? [
-          {label: question.optionOne.text, value: 'optionOne'},{label: question.optionTwo.text, value: 'optionTwo'}
+          {label: question.optionOne.text, value: 'optionOne'},
+          {label: question.optionTwo.text, value: 'optionTwo'}
         ]
       : []
   }
 }
 
-export default connect(mapStateToProps)(UnansweredQuestionPage)
+export default connect(mapStateToProps)(UnansweredQuestionContainer)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import QuestionContainer from '../QuestionContainer';
 import ViewPollContainer from '../ViewPollContainer';
 
@@ -10,17 +11,16 @@ class QuestionsPage extends Component {
 
   handleClick = (e, isAnsweredTab) => {
     e.preventDefault();
+    this.setState({ isAnsweredTab });
+  };
 
-    console.log('clicking btn data 1: ', isAnsweredTab);
-
-    this.setState({
-      isAnsweredTab,
-    });
+  handleViewQuestion = (e, id) => {
+    e.preventDefault();
+    this.props.history.push(`/questions/${id}`)
   };
 
   render() {
-
-    const { questionIdsAnswered, questionIdsUnanswered } = this.props;
+    const { questions, questionIdsAnswered, questionIdsUnanswered } = this.props;
     const { isAnsweredTab } = this.state;
 
     const questionIds =
@@ -29,18 +29,30 @@ class QuestionsPage extends Component {
     return (
       <div className='container'>
         <div class="ui buttons fluid header">
-          <button class="ui button" onClick={(e) => this.handleClick(e, false)}>
+          <button 
+            class={`ui button ${ !isAnsweredTab ? "active" : "" }`} 
+            onClick={(e) => this.handleClick(e, false)}>
             Unanswered
           </button>
           <div class="or"></div>
-          <button class="ui button" onClick={(e) => this.handleClick(e, true)}>
+          <button 
+            class={`ui button ${ isAnsweredTab ? "active" : "" }`} 
+            onClick={(e) => this.handleClick(e, true)}>
             Answered
           </button>
         </div>
-          {questionIds.map((id) => (
+          {questionIds.map((qid) => (
             <QuestionContainer
-              id={id} 
-              wouldYouRatherContainer={<ViewPollContainer button={<button className="btn">View Poll</button>}/>}
+              key={qid} id={qid} 
+              wouldYouRatherContainer={
+                <ViewPollContainer 
+                content={
+                  <div>
+                    <p><em>{ questions[qid].optionOne.text }</em> OR ...</p>
+                    <button className="btn" onClick={(e) => this.handleViewQuestion(e, qid)}>View Poll</button>
+                  </div>
+                }
+                />}
             />
           ))}
       </div>
@@ -50,28 +62,29 @@ class QuestionsPage extends Component {
 
 function mapStateToProps({ authedUser, questions }) {
 
-  const { uid } = authedUser.id
+  const { id } = authedUser
 
   const questionIds = Object.keys(questions).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp
   );
 
   const questionIdsAnswered = questionIds.filter(
-    (id) =>
-      questions[id].optionOne.votes.includes(uid) ||
-      questions[id].optionTwo.votes.includes(uid)
+    (qid) =>
+      questions[qid].optionOne.votes.includes(id) ||
+      questions[qid].optionTwo.votes.includes(id)
   );
 
   const questionIdsUnanswered = questionIds.filter(
-    (id) =>
-      !questions[id].optionOne.votes.includes(uid) &&
-      !questions[id].optionTwo.votes.includes(uid)
+    (qid) =>
+      !questions[qid].optionOne.votes.includes(id) &&
+      !questions[qid].optionTwo.votes.includes(id)
   );
 
   return {
     questionIdsAnswered,
     questionIdsUnanswered,
+    questions 
   };
 }
 
-export default connect(mapStateToProps)(QuestionsPage);
+export default withRouter(connect(mapStateToProps)(QuestionsPage));

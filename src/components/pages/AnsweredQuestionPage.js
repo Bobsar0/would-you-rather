@@ -6,14 +6,15 @@ import ResultContainer from '../ResultContainer';
 class AnsweredQuestionContainer extends Component {
 
   render() {
-    const {options, totalVotes, authedUser} = this.props
+    const {qid, options, totalVotes, authedUser} = this.props
 
     return (
         <ViewPollContainer
         headerText='Results:'
           content={
             options.map((option) => 
-              <ResultContainer 
+              <ResultContainer
+                key={qid} 
                 option={option} 
                 totalVotes={totalVotes}
                 isVoted={option.votes.includes(authedUser.id)} 
@@ -30,6 +31,7 @@ function mapStateToProps({authedUser, questions}, {id}) {
   const {optionOne, optionTwo} = question
 
   return {
+    qid: id,
     authedUser,
     options: question 
       ? [ optionOne, optionTwo ]

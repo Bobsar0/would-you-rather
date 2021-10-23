@@ -23,6 +23,6 @@ export default function ResultContainer(props) {
 
 ResultContainer.propTypes = {
   option: PropTypes.object.isRequired,
-  totalVotes: PropTypes.string.isRequired,
+  totalVotes: PropTypes.number.isRequired,
   isVoted: PropTypes.bool.isRequired
 };

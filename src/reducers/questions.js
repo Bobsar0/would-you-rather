@@ -34,10 +34,10 @@ export default function questions(state = {}, action) {
         //get question with the id of whatever we're passing into action id to be a new object
         [id]: {
           ...state[id],
-          optionOne: answer === optionOne.text
+          optionOne: answer === 'optionOne'
             ? { ...optionOne, votes: optionOneVotes}
             : optionOne,
-          optionTwo: answer === optionTwo.text
+          optionTwo: answer === 'optionTwo'
             ? { ...optionTwo, votes: optionTwoVotes }
             : optionTwo
           }

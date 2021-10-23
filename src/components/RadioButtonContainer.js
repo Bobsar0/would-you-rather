@@ -18,7 +18,7 @@ class RadioButton extends Component {
     return (
       <Form onSubmit={(e) => this.props.handleSubmit(e, selectedOption)}>
         {this.props.options.map((option) => (
-          <Form.Field>
+          <Form.Field key={`${option.value}formField`}>
             <Radio
               label={option.label}
               value={option.value}

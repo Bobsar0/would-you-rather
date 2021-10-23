@@ -25,6 +25,10 @@ class QuestionsPage extends Component {
 
     const questionIds =
       isAnsweredTab === true ? questionIdsAnswered : questionIdsUnanswered;
+    
+    const noQuestionsText = isAnsweredTab === true
+      ? 'You have not answered any questions.'
+      : 'You have answered all questions.'
 
     return (
       <div className='container'>
@@ -41,20 +45,25 @@ class QuestionsPage extends Component {
             Answered
           </button>
         </div>
-          {questionIds.map((qid) => (
-            <QuestionContainer
-              key={qid} id={qid} 
-              wouldYouRatherContainer={
-                <ViewPollContainer 
-                content={
-                  <div>
-                    <p><em>{ questions[qid].optionOne.text }</em> OR ...</p>
-                    <button className="btn" onClick={(e) => this.handleViewQuestion(e, qid)}>View Poll</button>
-                  </div>
-                }
-                />}
-            />
-          ))}
+          { questionIds.length === 0
+              ? <p>{noQuestionsText}</p>
+          
+              : questionIds.map((qid) => (
+                <QuestionContainer
+                  key={qid} id={qid} 
+                  wouldYouRatherContainer={
+                    <ViewPollContainer 
+                    content={
+                      <div>
+                        <p><em>{ questions[qid].optionOne.text }</em> OR ...</p>
+                        <button className="btn" onClick={(e) => this.handleViewQuestion(e, qid)}>View Poll</button>
+                      </div>
+                    }
+                    />
+                  }
+                />
+              ))
+          }
       </div>
     );
   }

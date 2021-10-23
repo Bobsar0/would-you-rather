@@ -14,7 +14,7 @@ class AnsweredQuestionContainer extends Component {
           content={
             options.map((option) => 
               <ResultContainer
-                key={qid} 
+                key={`${qid} ${option.text}`} 
                 option={option} 
                 totalVotes={totalVotes}
                 isVoted={option.votes.includes(authedUser.id)} 

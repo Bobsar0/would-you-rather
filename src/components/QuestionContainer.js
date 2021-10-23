@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Divider, Grid, Segment } from 'semantic-ui-react'
-import { formatQuestion, formatQuestionDisplay } from '../utils/helpers';
+import { Grid, Segment } from 'semantic-ui-react'
+import { formatQuestionDisplay } from '../utils/helpers';
 import QuestionContainerHeader from './QuestionContainerHeader';
-import ViewPollContainer from './ViewPollContainer';
 
 class QuestionContainer  extends Component {
 
   render() {
     const { question, wouldYouRatherContainer } = this.props;
 
-    const {id, authorName,
-    optionOneText,
-    optionTwoText,
-    optionOneVotes,
-        optionTwoVotes,
-    avatarUrl,
-    hasAnswered} = question
+    const {id, authorName, avatarUrl} = question
 
 
     return (

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  * @returns a button
  */
 function CustomButton(props) {
-  const { title, isDisabled, onSubmit } = props;
+  const { title, isDisabled } = props;
 
   return (
     <button className="btn" type="submit" disabled={isDisabled}>

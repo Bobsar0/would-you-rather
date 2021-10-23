@@ -17,24 +17,6 @@ code {
   padding: 20px;
 }
 
-.result {
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
-  position: relative;
-}
-
-.voted {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  padding: 5px;
-  text-align: center;
-  background: rgb(255, 196, 0);
-  color: white;
-}
 .active {
   background: rgba(0, 255, 0, 0.1);
 }
@@ -57,14 +39,13 @@ a {
 
 .btn {
   text-transform: uppercase;
-  color: green;
+  color: rgb(0, 200, 255);
+  /* color: #0e6eb8; */
   margin: 15px auto;
   padding: 10px;
-  /* border: 1px solid rgba(0, 0, 0, 0.29); */
-  border: 1px solid green;
+  border: 1px solid rgb(0, 200, 255);
   border-radius: 5px;
   cursor: pointer;
-  /* background: green; */
   background: #fff;
   font-size: 15px;
   width: 50%;
@@ -72,11 +53,9 @@ a {
 }
 
 .btn:hover {
-  border-color: rgba(0, 0, 0, 0.5);
   color: white;
-  background: green;
+  background: rgb(0, 200, 255);
   font-size: 16px;
-  /* text-decoration: none; */
 }
 
 .btn:disabled,
@@ -143,10 +122,32 @@ a {
   color: #c3392a;
 }
 
-/* .textarea {
-  border-radius: 4px;
+.result {
   border: 1px solid #dad7d7;
-  padding: 10px;
-  font-size: 15px;
-  height: 40px;
-} */
+  border-radius: 3px;
+  position: relative;
+}
+
+.score {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 12px;
+  margin: auto;
+  text-align: center;
+  background: rgb(0, 200, 255);
+  color: white;
+}
+
+.voted {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 5px;
+  text-align: center;
+  background: rgb(255, 196, 0);
+  color: white;
+}

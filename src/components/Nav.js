@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser';
 
 class Nav extends Component {
@@ -24,7 +24,7 @@ class Nav extends Component {
             <NavLink to='/leaderboard' exact activeClassName='active' className="item">Leaderboard</NavLink>
             
             { authedUser != null
-              ? <div class="right menu">
+              ? <div className="right menu">
                   <a className="item">
                     <span>{authedUser.name} 
                       <img className="item" src={authedUser.avatarURL} alt={`Avatar of ${authedUser.name}`} className='avatar'/>
@@ -32,7 +32,7 @@ class Nav extends Component {
                   </a>
                   <NavLink to='/login' exact activeClassName='active' className="item" onClick={this.handleLogout}>Logout</NavLink>
                 </div>
-              : <div class="right menu">
+              : <div className="right menu">
                   <NavLink to='/login' exact activeClassName='active' className="item">Login</NavLink>
                 </div>}
           </nav>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import ViewPollContainer from '../ViewPollContainer';
-import ResultContainer from '../ResultContainer';
+import Result from '../ResultContainer';
 
 class AnsweredQuestionContainer extends Component {
 
@@ -13,7 +13,7 @@ class AnsweredQuestionContainer extends Component {
         headerText='Results:'
           content={
             options.map((option) => 
-              <ResultContainer
+              <Result
                 key={`${qid} ${option.text}`} 
                 option={option} 
                 totalVotes={totalVotes}

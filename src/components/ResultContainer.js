@@ -1,9 +1,9 @@
 import React from 'react';
 import { Progress } from 'semantic-ui-react';
-import { capitalizeFirstLetter }from '../utils/helpers';
+import { capitalizeFirstLetter, getPercentage }from '../utils/helpers';
 import PropTypes from 'prop-types';
 
-export default function ResultContainer(props) {
+export default function Result(props) {
   const {option, totalVotes, isVoted} = props
 
   const activeClass = isVoted === true ? "active" : ""
@@ -15,13 +15,16 @@ export default function ResultContainer(props) {
           Your vote
         </div>      
       <h4>{capitalizeFirstLetter(option.text)}</h4>
-      <Progress value={option.votes.length} total={totalVotes} progress='percent' color='green'/>
-      <h5>{option.votes.length} out of {totalVotes} votes</h5>
+      <Progress 
+        percent={getPercentage(option.votes.length, totalVotes)} 
+        progress color='green'
+      />
+      <h5 className='center'>{option.votes.length} out of {totalVotes} votes</h5>
     </div>
   )
 }
 
-ResultContainer.propTypes = {
+Result.propTypes = {
   option: PropTypes.object.isRequired,
   totalVotes: PropTypes.number.isRequired,
   isVoted: PropTypes.bool.isRequired

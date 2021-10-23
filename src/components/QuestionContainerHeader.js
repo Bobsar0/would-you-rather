@@ -4,6 +4,6 @@ import {Segment } from 'semantic-ui-react'
 
 export default function QuestionContainerHeader(props){
   return (
-      <Segment as='h3' color='green'>{props.text}</Segment>
+      <Segment as='h3' color='teal'>{props.text}</Segment>
   )
 }

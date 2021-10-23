@@ -6,11 +6,11 @@ import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading-bar'
 import Login from './pages/Login';
 import QuestionsPage from './pages/QuestionsPage';
-import ResultContainer from './ResultContainer';
 import NewQuestion from './pages/NewQuestion';
 import QuestionPage from './pages/QuestionPage';
 import Nav from './Nav';
 import Auth from './Auth';
+import LeaderboardPage from './pages/LeaderboardPage';
 
 class App extends Component {
   componentDidMount() {
@@ -24,8 +24,6 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className="App container">
-            {/* <header className="App-header">
-            </header> */}
             <Nav />
             {this.props.loading === true 
               ? null
@@ -33,7 +31,8 @@ class App extends Component {
                   <Route path='/' exact component={Auth(QuestionsPage)} />
                   <Route path='/questions/:id' component={Auth(QuestionPage)} />
                   <Route path='/login' exact component={Login} />
-                  <Route path='/new' component={Auth(NewQuestion)} />
+                  <Route path='/new' exact component={Auth(NewQuestion)} />
+                  <Route path='/leaderboard' exact component={Auth(LeaderboardPage)} />
               </div>
             }
           </div>
@@ -43,12 +42,11 @@ class App extends Component {
   }
 }
 
-// Only display login once initial data is loaded
+// only render page once data is loaded
 function mapStateToProps({ loadingBar }) {
   return {
     loading: loadingBar.default === 1
   };
 }
 
-// add connect to have access to dispatch
 export default connect(mapStateToProps)(App);

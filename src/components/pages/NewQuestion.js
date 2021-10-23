@@ -44,7 +44,7 @@ class NewQuestion extends Component {
 
   render() {
     const { option1, option2, toHome } = this.state;
-    console.log('renderrrrr state: ',this.state)
+
     if (toHome === true) {
        return <Redirect to='/' />
     }

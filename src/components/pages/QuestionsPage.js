@@ -32,15 +32,15 @@ class QuestionsPage extends Component {
 
     return (
       <div className='container'>
-        <div class="ui buttons fluid header">
+        <div className="ui buttons fluid header">
           <button 
-            class={`ui button ${ !isAnsweredTab ? "active" : "" }`} 
+            className={`ui button ${ !isAnsweredTab ? "active" : "" }`} 
             onClick={(e) => this.handleClick(e, false)}>
             Unanswered
           </button>
-          <div class="or"></div>
+          <div className="or"></div>
           <button 
-            class={`ui button ${ isAnsweredTab ? "active" : "" }`} 
+            className={`ui button ${ isAnsweredTab ? "active" : "" }`} 
             onClick={(e) => this.handleClick(e, true)}>
             Answered
           </button>

@@ -47,7 +47,6 @@ export function handleAnswerQuestion(answer, qid) {
         authedUser: authedUser.id, qid, answer
       })
     } catch (e) {
-      console.warn('Error in handleAnswerQuestion: ', e)
       dispatch(answerQuestion(answer, authedUser, qid));
       alert('There was an error in answering the question. Please try again')
     }

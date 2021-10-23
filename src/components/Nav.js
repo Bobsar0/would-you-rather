@@ -2,15 +2,17 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser';
+import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router';
 
 class Nav extends Component {
 
   handleLogout = (e) => {
     e.preventDefault();
-    // SET_AUTHED_USER in store
-    const { dispatch } = this.props;
+    const { dispatch, history } = this.props;
 
     dispatch(handleSetAuthedUser(null));
+    history.push(`/login`)
   }
 
 
@@ -30,7 +32,7 @@ class Nav extends Component {
                       <img className="item" src={authedUser.avatarURL} alt={`Avatar of ${authedUser.name}`} className='avatar'/>
                     </span>
                   </a>
-                  <NavLink to='/login' exact activeClassName='active' className="item" onClick={this.handleLogout}>Logout</NavLink>
+                  <NavLink to='/logout' exact className="item" onClick={this.handleLogout}>Logout</NavLink>
                 </div>
               : <Fragment></Fragment>
                 }
@@ -44,4 +46,4 @@ function mapStateToProps({ authedUser }) {
   return { authedUser };
 }
 
-export default connect(mapStateToProps)(Nav);
+export default withRouter(connect(mapStateToProps)(Nav));

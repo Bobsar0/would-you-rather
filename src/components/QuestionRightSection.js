@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ViewPollContainer(props) {
+function QuestionRightSection(props) {
   const {headerText, content} = props
 
   return (
@@ -11,4 +11,4 @@ function ViewPollContainer(props) {
   );
 }
 
-export default ViewPollContainer;
+export default QuestionRightSection;

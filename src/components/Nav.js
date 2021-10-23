@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser';
@@ -20,7 +20,7 @@ class Nav extends Component {
       return (
           <nav className="ui pointing secondary menu">
             <NavLink to='/' exact activeClassName='active' className="item">Home</NavLink>
-            <NavLink to='/new' exact activeClassName='active' className="item">New Question</NavLink>
+            <NavLink to='/add' exact activeClassName='active' className="item">New Question</NavLink>
             <NavLink to='/leaderboard' exact activeClassName='active' className="item">Leaderboard</NavLink>
             
             { authedUser != null
@@ -32,9 +32,8 @@ class Nav extends Component {
                   </a>
                   <NavLink to='/login' exact activeClassName='active' className="item" onClick={this.handleLogout}>Logout</NavLink>
                 </div>
-              : <div className="right menu">
-                  <NavLink to='/login' exact activeClassName='active' className="item">Login</NavLink>
-                </div>}
+              : <Fragment></Fragment>
+                }
           </nav>
         )
   }

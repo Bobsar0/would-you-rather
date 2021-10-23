@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getScore } from '../../utils/helpers';
 import LeaderboardCard from '../LeaderboardCard';
 import PropTypes from 'prop-types';
 
-function LeaderboardPage(props){
-    const { userIds } = props;
+class LeaderboardPage extends Component{
+  static routeName = '/leaderboard';
+
+  render() {
+    const { userIds } = this.props;
     return (
       userIds.map((uid, index) => (
         <LeaderboardCard key={uid} id={uid} rank={index+1}/>
       ))
     );
+  }
 }
 
 LeaderboardPage.propTypes = {

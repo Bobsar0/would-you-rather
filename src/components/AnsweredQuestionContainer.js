@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import ViewPollContainer from '../ViewPollContainer';
-import Result from '../ResultContainer';
+import QuestionRightSection from './QuestionRightSection';
+import Result from './Result';
 
 class AnsweredQuestionContainer extends Component {
 
@@ -9,7 +9,7 @@ class AnsweredQuestionContainer extends Component {
     const {qid, options, totalVotes, authedUser} = this.props
 
     return (
-        <ViewPollContainer
+        <QuestionRightSection
         headerText='Results:'
           content={
             options.map((option) => 

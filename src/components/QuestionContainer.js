@@ -11,7 +11,6 @@ class QuestionContainer  extends Component {
 
     const {id, authorName, avatarUrl} = question
 
-
     return (
       <Segment.Group key={id}>
         <QuestionContainerHeader text={`Question by ${authorName}`} />

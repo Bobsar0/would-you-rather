@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import ViewPollContainer from '../ViewPollContainer';
-import RadioButton from '../RadioButtonContainer';
-import { handleAnswerQuestion } from '../../actions/questions';
-import AnsweredQuestionPage from './AnsweredQuestionPage';
+import QuestionRightSection from './QuestionRightSection';
+import RadioButton from './RadioButton';
+import { handleAnswerQuestion } from '../actions/questions';
+import AnsweredQuestionContainer from './AnsweredQuestionContainer';
 
 class UnansweredQuestionContainer extends Component {
 
@@ -16,7 +16,6 @@ class UnansweredQuestionContainer extends Component {
     // dispatch answer to question to store
     const { dispatch, id} = this.props
     dispatch(handleAnswerQuestion(answer, id))
-    // go to viewAnsweredQuestion
     this.setState({ toAnsweredQuestion: true})
   }
 
@@ -26,9 +25,9 @@ class UnansweredQuestionContainer extends Component {
 
     return (
       toAnsweredQuestion === true
-      ? <AnsweredQuestionPage id={id} />
+      ? <AnsweredQuestionContainer id={id} />
       :
-      <ViewPollContainer 
+      <QuestionRightSection 
         content={
           <RadioButton options={options} handleSubmit={this.handleSubmitAnswer}/>
         }

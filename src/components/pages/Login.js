@@ -7,6 +7,8 @@ import { handleSetAuthedUser } from '../../actions/authedUser';
 import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
+  static routeName = '/login';
+
   state = {
     selectedUserId: '',
   };
@@ -27,10 +29,10 @@ class Login extends Component {
 
   render() {
     const { selectedUserId } = this.state;
-    const { authedUser, userOptions } = this.props;
+    const { authedUser, userOptions, fromRoute } = this.props;
 
     if(authedUser !== null) {
-      return <Redirect to='/' />
+       return <Redirect to={fromRoute ?? '/'} />
     }
 
     return (

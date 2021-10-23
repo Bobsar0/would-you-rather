@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import QuestionContainer from '../QuestionContainer';
-import ViewPollContainer from '../ViewPollContainer';
+import QuestionRightSection from '../QuestionRightSection';
 
 class QuestionsPage extends Component {
+  static routeName = '/questions';
+
   state = {
     isAnsweredTab: false,
   };
@@ -52,7 +54,7 @@ class QuestionsPage extends Component {
                 <QuestionContainer
                   key={qid} id={qid} 
                   wouldYouRatherContainer={
-                    <ViewPollContainer 
+                    <QuestionRightSection 
                     content={
                       <div>
                         <p><em>{ questions[qid].optionOne.text }</em> OR ...</p>

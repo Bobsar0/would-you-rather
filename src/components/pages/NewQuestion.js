@@ -10,6 +10,8 @@ import CustomButton from '../CustomButton'
 // This is because we will need to update the ui based on the state of the component
 // We're managing the state here instead of in redux because it is not a shared state
 class NewQuestion extends Component {
+  static routeName = '/add';
+
   state = {
     option1: '',
     option2: '',
@@ -35,9 +37,10 @@ class NewQuestion extends Component {
     const {dispatch } = this.props;
 
     dispatch(handleAddQuestion(unCapitalizeFirstLetter(option1), unCapitalizeFirstLetter(option2)))
+
     this.setState(() => ({ 
       option1: '', 
-      option2: 'bb', 
+      option2: '', 
       toHome: true
     }));
   };

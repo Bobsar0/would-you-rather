@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router'
+import Login from './pages/Login';
 
 export default function(Component) {
 
@@ -8,8 +8,8 @@ export default function(Component) {
 
     render() {
       return this.props.isAuthenticated
-      ? <Component {...this.props}/> 
-      : <Redirect to='/login' />
+      ? <Component {...this.props}/>
+      : <Login fromRoute={Component.routeName} />
     }
   }
 

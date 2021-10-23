@@ -28,7 +28,7 @@ function answerQuestion(answer, authedUser, id) {
 
 // action creator
 function addQuestion(question) {
-  // the action
+  // return the action with the type of ADD_QUESTION
   return {
     type: ADD_QUESTION,
     question,
@@ -67,6 +67,6 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
     })
 
     dispatch(addQuestion(question))
-    dispatch(hideLoading())
+    return dispatch(hideLoading())
   }
 }

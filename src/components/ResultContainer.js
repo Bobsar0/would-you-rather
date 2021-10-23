@@ -1,6 +1,6 @@
 import React from 'react';
 import { Progress } from 'semantic-ui-react';
-import capitalizeFirstLetter from '../utils/helpers';
+import { capitalizeFirstLetter }from '../utils/helpers';
 import PropTypes from 'prop-types';
 
 export default function ResultContainer(props) {

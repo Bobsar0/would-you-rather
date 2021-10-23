@@ -1,4 +1,4 @@
-import { ANSWER_QUESTION, GET_QUESTIONS } from '../actions/questions';
+import { ADD_QUESTION, ANSWER_QUESTION, GET_QUESTIONS } from '../actions/questions';
 
 // users reducer which modifies the state of the users object based on a dispatched action
 // returns a new state
@@ -9,6 +9,13 @@ export default function questions(state = {}, action) {
         ...state,
         ...action.questions,
       };
+    case ADD_QUESTION: {
+      const { question } = action
+      return {
+        ...state,
+        [question.id]: question
+      }
+    }
     case ANSWER_QUESTION: {
       const { answer, authedUser, id} = action
       const { optionOne, optionTwo } = state[id]

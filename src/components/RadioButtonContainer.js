@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import { Form, Radio } from 'semantic-ui-react';
 
 // Controlled component. Input component is controlled by the state and user's ability to change that state by interacting with rendered radio buttons

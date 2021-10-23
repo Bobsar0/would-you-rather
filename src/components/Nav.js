@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { handleSetAuthedUser } from '../actions/authedUser';
-import { Redirect } from 'react-router-dom'
 import { withRouter } from 'react-router';
 
 class Nav extends Component {

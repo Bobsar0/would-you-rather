@@ -8,7 +8,7 @@ export default function NotFoundPage(props) {
   return (
     <div>    
       <h1>404</h1>
-      <h5 className='center'>{message}</h5>
+      <h5>{message}</h5>
     </div>
   )
 }

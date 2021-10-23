@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import QuestionContainer from '../QuestionContainer';
-import AnsweredQuestionContainer from './AnsweredQuestionPage';
-import UnansweredQuestionContainer from './UnansweredQuestionPage';
+import AnsweredQuestionContainer from '../AnsweredQuestionContainer';
+import UnansweredQuestionContainer from '../UnansweredQuestionContainer';
+import NotFoundPage from './NotFoundPage';
 
 class QuestionPage extends Component {
+  static routeName = '/questions/:id';
 
   render() {
     const {id, hasAnswered} = this.props
+
+    if(hasAnswered === null) {
+      return <NotFoundPage message="Question not found" />
+    }
 
     return (
       <div>
@@ -28,16 +34,13 @@ function mapStateToProps({ authedUser, questions }, props) {
   const {id} = props.match.params
 
   const question = questions[id]
-  if(question === null) {
-      return <p>This Question doesn't exist</p>
-  }
-
-  const {optionOne, optionTwo} = question
 
   return {
     id,
-    hasAnswered:
-      optionOne.votes.includes(authedUser.id) || optionTwo.votes.includes(authedUser.id),
+    hasAnswered: question 
+      ? question.optionOne.votes.includes(authedUser.id)
+        || question.optionTwo.votes.includes(authedUser.id)
+      : null
   }
 }
 

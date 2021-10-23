@@ -1,13 +1,16 @@
 import '../App.css';
 import React, { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading-bar'
 import Login from './pages/Login';
 import QuestionsPage from './pages/QuestionsPage';
-import UnansweredQuestionPage from './pages/UnansweredQuestionPage';
 import ResultContainer from './ResultContainer';
-import AnsweredQuestionPage from './pages/AnsweredQuestionPage';
+import NewQuestion from './pages/NewQuestion';
+import QuestionPage from './pages/QuestionPage';
+import Nav from './Nav';
+import Auth from './Auth';
 
 class App extends Component {
   componentDidMount() {
@@ -17,24 +20,33 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <LoadingBar />
-        <div className="App container">
-          {/* <header className="App-header">
-          </header> */}
-          {this.props.loading === true ? null : <AnsweredQuestionPage id='8xf0y6ziyjabvozdd253nd'/>}
-          {/* {this.props.loading === true ? null : <ResultContainer/>} */}
-        </div>
-      </Fragment>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className="App container">
+            {/* <header className="App-header">
+            </header> */}
+            <Nav />
+            {this.props.loading === true 
+              ? null
+              : <div>
+                  <Route path='/' exact component={Auth(QuestionsPage)} />
+                  <Route path='/questions/:id' component={Auth(QuestionPage)} />
+                  <Route path='/login' exact component={Login} />
+                  {/* <Route path='/new' component={NewQuestion} /> */}
+              </div>
+            }
+          </div>
+        </Fragment>
+      </Router>
     );
   }
 }
 
 // Only display login once initial data is loaded
-function mapStateToProps({ users }) {
+function mapStateToProps({ loadingBar }) {
   return {
-    // loading: authedUser === null
-    loading: users.length === 0,
+    loading: loadingBar.default === 1
   };
 }
 

@@ -11,29 +11,28 @@ export default function questions(state = {}, action) {
       };
     case ANSWER_QUESTION: {
       const { answer, authedUser, id} = action
+      const { optionOne, optionTwo } = state[id]
+
+      // add or remove username based on whether they voted the question
+      const optionOneVotes = optionOne.votes.includes(authedUser.id)
+        ? optionOne.votes.filter((uid) => uid !== authedUser.id)
+        : optionOne.votes.concat(authedUser.id)
+
+      const optionTwoVotes = state[id].optionTwo.votes.includes(authedUser.id)
+        ? optionTwo.votes.filter((uid) => uid !== authedUser.id)
+        : optionTwo.votes.concat(authedUser.id)
 
       return  {
         ...state,
         //get question with the id of whatever we're passing into action id to be a new object
         [id]: {
           ...state[id],
-          // add or remove username based on whether they have answered the question
-          optionOne: answer === state[id].optionOne.text
-            ? {
-                ...state[id].optionOne,
-                votes: state[id].optionOne.votes.includes(authedUser)
-                  ? state[id].optionOne.votes.filter((uid) => uid !== action.authedUser)
-                  : state[action.id].optionOne.votes.concat(authedUser)
-              }
-            : state[id].optionOne,
-          optionTwo: answer === state[id].optionTwo.text
-            ? {
-                ...state[id].optionTwo,
-                votes: state[id].optionTwo.votes.includes(authedUser)
-                ? state[id].optionTwo.votes.filter((uid) => uid !== action.authedUser)
-                : state[action.id].optionTwo.votes.concat(authedUser)
-              }
-            : state[id].optionTwo
+          optionOne: answer === optionOne.text
+            ? { ...optionOne, votes: optionOneVotes}
+            : optionOne,
+          optionTwo: answer === optionTwo.text
+            ? { ...optionTwo, votes: optionTwoVotes }
+            : optionTwo
           }
       }
     }

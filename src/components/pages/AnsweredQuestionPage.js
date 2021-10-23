@@ -1,40 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import QuestionContainer from '../QuestionContainer';
 import ViewPollContainer from '../ViewPollContainer';
 import ResultContainer from '../ResultContainer';
 
-class AnsweredQuestionPage extends Component {
+class AnsweredQuestionContainer extends Component {
 
   render() {
-    const {id, options, totalVotes, authedUser} = this.props
+    const {options, totalVotes, authedUser} = this.props
 
     return (
-      <div>
-        <QuestionContainer 
-          id={id}
-          wouldYouRatherContainer={
-            <ViewPollContainer
-            headerText='Results:'
-              content={
-                
-                options.map((option) => 
-                  <ResultContainer 
-                    option={option} 
-                    totalVotes={totalVotes}
-                    isVoted={option.votes.includes(authedUser)} 
-                  />
-                )
-              }
-            />}
+        <ViewPollContainer
+        headerText='Results:'
+          content={
+            options.map((option) => 
+              <ResultContainer 
+                option={option} 
+                totalVotes={totalVotes}
+                isVoted={option.votes.includes(authedUser.id)} 
+              />
+            )
+          }
         />
-      </div>
     )
   }
 }
 
 function mapStateToProps({authedUser, questions}, {id}) {
-  authedUser = 'sarahedo'
   const question = questions[id]
   const {optionOne, optionTwo} = question
 
@@ -49,4 +40,4 @@ function mapStateToProps({authedUser, questions}, {id}) {
   }
 }
 
-export default connect(mapStateToProps)(AnsweredQuestionPage)
+export default connect(mapStateToProps)(AnsweredQuestionContainer)

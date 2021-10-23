@@ -4,34 +4,34 @@ import { Dropdown } from 'semantic-ui-react';
 import logo from '../../logo.svg';
 import CustomButton from '../CustomButton';
 import { handleSetAuthedUser } from '../../actions/authedUser';
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
   state = {
     selectedUserId: '',
   };
 
-  handleChange = (event, data) => {
-    this.setState({
-      selectedUserId: data.value,
-    });
+  handleChange = (e, { value }) => {
+    this.setState({ selectedUserId: value });
   };
 
   handleLogin = (e) => {
     e.preventDefault();
-    const { selectedUserId } = this.state;
-    console.log('selected', this.state.selectedUserId);
-    // SET_AUTHED_USER in store
-    const { dispatch } = this.props;
 
-    dispatch(handleSetAuthedUser(selectedUserId));
+    const { selectedUserId } = this.state;
+    const { dispatch, users } = this.props;
+    dispatch(handleSetAuthedUser(users[selectedUserId]));
+
+    this.setState({ selectedUserId: '' })
   };
 
   render() {
-    console.log('props:', this.props);
     const { selectedUserId } = this.state;
-    const { userOptions } = this.props;
+    const { authedUser, userOptions } = this.props;
 
-    // redirect to the Questions page when submitted
+    if(authedUser !== null) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div className="card">
@@ -54,9 +54,7 @@ class Login extends Component {
   }
 }
 
-// takes in the state of our store, sorts the tweets by timestamp and return an object that has the tweets property id on it
-// uses destructuring to get only the needed tweets slice from the store
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
   let userOptions = [];
 
   Object.values(users).forEach((userObj) =>
@@ -72,7 +70,9 @@ function mapStateToProps({ users }) {
   );
 
   return {
+    authedUser,
     userOptions,
+    users
   };
 }
 

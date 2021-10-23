@@ -19,6 +19,7 @@ class QuestionsPage extends Component {
   };
 
   render() {
+
     const { questionIdsAnswered, questionIdsUnanswered } = this.props;
     const { isAnsweredTab } = this.state;
 
@@ -26,7 +27,7 @@ class QuestionsPage extends Component {
       isAnsweredTab === true ? questionIdsAnswered : questionIdsUnanswered;
 
     return (
-      <div>
+      <div className='container'>
         <div class="ui buttons fluid header">
           <button class="ui button" onClick={(e) => this.handleClick(e, false)}>
             Unanswered
@@ -47,28 +48,24 @@ class QuestionsPage extends Component {
   }
 }
 
-// takes in the state of our store, sorts the tweets by timestamp and return an object that has the tweets property id on it
-// uses destructuring to get only the needed tweets slice from the store
-function mapStateToProps({ questions, authedUser }) {
-  //todo: remove authedUser
-    authedUser = 'tylermcginnis'
-      console.log('questonsssss: ', questions)
+function mapStateToProps({ authedUser, questions }) {
+
+  const { uid } = authedUser.id
 
   const questionIds = Object.keys(questions).sort(
     (a, b) => questions[b].timestamp - questions[a].timestamp
   );
-      console.log('idsssss in map: ', questionIds)
 
   const questionIdsAnswered = questionIds.filter(
     (id) =>
-      questions[id].optionOne.votes.includes(authedUser) ||
-      questions[id].optionTwo.votes.includes(authedUser)
+      questions[id].optionOne.votes.includes(uid) ||
+      questions[id].optionTwo.votes.includes(uid)
   );
 
   const questionIdsUnanswered = questionIds.filter(
     (id) =>
-      !questions[id].optionOne.votes.includes(authedUser) &&
-      !questions[id].optionTwo.votes.includes(authedUser)
+      !questions[id].optionOne.votes.includes(uid) &&
+      !questions[id].optionTwo.votes.includes(uid)
   );
 
   return {

@@ -18,7 +18,7 @@ export function formatQuestionDisplay(question, author, authedUser) {
     authorName: name,
     avatarUrl: avatarURL,
     hasAnswered:
-      optionOne.votes.includes(authedUser) || optionTwo.votes.includes(authedUser),
+      optionOne.votes.includes(authedUser.id) || optionTwo.votes.includes(authedUser.id),
     // selectedOption:
   };
 }
